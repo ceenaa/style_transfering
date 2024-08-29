@@ -111,5 +111,5 @@ Here are some examples of results generated using this implementation:
 
 
 ## References
-Gatys, L.A., Ecker, A.S., Bethge, M. (2015). A Neural Algorithm of Artistic Style. arXiv:1508.06576.
 
+- Gatys, L.A., Ecker, A.S., Bethge, M. (2015). [A Neural Algorithm of Artistic Style](https://arxiv.org/abs/1508.06576). arXiv:1508.06576.
