@@ -11,7 +11,7 @@ Neural Style Transfer is a technique to blend the style of one image with the co
 
 Just put your images in project directory and address it correctly in `main.ipynb`.
 It should be like this.
-```
+```python
 style_img = PIL.Image.open('/content/style.jpg')
 content_img = PIL.Image.open('/content/content.jpg')
 
@@ -103,7 +103,7 @@ for epoch in range(n_epochs):
 ## Examples
 Here are some examples of results generated using this implementation:
 
-![image](https://github.com/user-attachments/assets/3a7f611e-c375-4fba-ba10-3f9f00d4f60a)
+![image](https://github.com/user-attachments/assets/18860eec-5e7e-4d78-8bd3-f8aa0e56886a)
 
 ![image](https://github.com/user-attachments/assets/71e2089a-63da-4ab7-803b-c7ecb491be5e)
 
