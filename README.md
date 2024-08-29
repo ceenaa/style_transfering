@@ -43,30 +43,34 @@ class VGG(nn.Module):
                 features.append(x)
         return features
 ```
+## Losses
+### Total Loss
+The complete loss is a combination of the content and style losses: simply put, we try to minimize the jointly losses on the target image
 
-## Content Loss
+```math
+\mathcal{L}_{\text{total}}(\vec{p}, \vec{a}, \vec{x}) = \alpha \mathcal{L}_{\text{content}}(\vec{p}, \vec{x}) + \beta \mathcal{L}_{\text{style}}(\vec{a}, \vec{x})
+```
+
+### Content Loss
 The content loss is computed as the Mean Squared Error (MSE) between the target image and the content image, using features extracted from a specific layer of the VGG network.
 
-```python
-def get_content_loss(content, target):
-    return torch.mean((content - target) ** 2)
+```math
+\mathcal{L}_{\text{content}}(\vec{p}, \vec{x}, l) = \frac{1}{2} \sum_{i,j} \left( F_{ij}^l - P_{ij}^l \right)^2
 ```
 
-## Style Loss
+### Style Loss
 Style loss is calculated using the Gram matrix, which captures the correlations between different feature maps. The style loss is the MSE between the Gram matrices of the target and style images, averaged over all selected layers.
 
-```python
-def get_gram_matrix(input, channel, height, width):
-    input = input.view(channel, height * width)
-    G = torch.mm(input, input.t())
-    return G
+```math
+Gram matrix \quad
+
+G_{ij}^l = \sum_k F_{ik}^l F_{jk}^l
+
 ```
-```python
-def get_style_loss(target, style):
-    _, channel, height, width = target.size()
-    G_target = get_gram_matrix(target, channel, height, width)
-    G_style = get_gram_matrix(style, channel, height, width)
-    return torch.mean(((G_target - G_style) ** 2)/(channel * height * width))
+
+```math
+\mathcal{L}_{\text{style}}(\vec{a}, \vec{x}) = \sum_{l=0}^{L} w_l E_l
+
 ```
 
 ## Training
